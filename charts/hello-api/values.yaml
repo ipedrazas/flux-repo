@@ -9,6 +9,10 @@ image:
   pullPolicy: IfNotPresent
   tag: latest
 
+test:
+  image: ipedrazas/curljq
+  tag: latest
+
 nameOverride: ""
 fullnameOverride: ""
 
