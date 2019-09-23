@@ -14,7 +14,8 @@ spec:
     ref: master
   values:
     image:
-      repository: ipedrazas/hello-api:v0.1
+      repository: ipedrazas/hello-api
+      version: v0.1
       pullPolicy: Always
     replicaCount: 1
     service:
