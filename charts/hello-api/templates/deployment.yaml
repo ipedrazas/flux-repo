@@ -22,7 +22,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: NAME
-              value: SQUID
+              value: {{ .Values.env.name }}
           ports:
             - name: http
               containerPort: 5000
