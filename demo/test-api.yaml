@@ -16,7 +16,7 @@ spec:
   values:
     image:
       repository: ipedrazas/hello-api
-      tag: v0.2.0.1
+      tag: v0.2.0.2
       pullPolicy: Always
     replicaCount: 1
     service:
