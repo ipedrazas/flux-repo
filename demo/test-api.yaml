@@ -23,4 +23,4 @@ spec:
       type: ClusterIP
       port: 5000
     env:
-      name: Monday
+      name: London
