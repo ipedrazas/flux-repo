@@ -1,0 +1,44 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: e2e-happy
+spec:
+  entrypoint: workflow
+  templates:
+  - name: workflow
+    dag:
+      tasks:
+      - name: Test-DB
+        template: test01
+      - name: Test-schema
+        dependencies: [Test DB]
+        template: test-fail
+        continueOn:
+          failed: true
+      - name: Test-login
+        dependencies: [Test-DB]
+        template: test01
+      - name: Test-report
+        dependencies: [Test-login, Test-schema]
+        template: test01
+      - name: Test-export
+        dependencies: [Test-login]
+        template: test-fail
+      - name: Test-bulk-export 
+        dependencies: [Test-login]
+        template: test01
+      - name: Test-logout
+        dependencies: [Test-export , Test-bulk-export ]
+        template: test01
+
+  - name: test01
+    container:
+      image: docker/whalesay:latest
+      command: [cowsay]
+      args: ["hello world"]
+
+  - name: test-fail
+    container:
+      image: alpine:latest
+      command: [sh, -c]
+      args: ["echo intentional failure; exit 1"]
